@@ -17,7 +17,14 @@ class UsersController < ApplicationController
     end
   end
 
-
+  def follow
+    @user = User.find(params[:id])
+    if current_user.follow!(@user)
+      redirect_to user_path(@user), notice: "Follow succeful!"
+    else
+      redirect_to user_path(@user), alert: "Error following."
+    end
+  end
 
   private
 
