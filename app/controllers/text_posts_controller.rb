@@ -16,6 +16,15 @@ class TextPostsController < ApplicationController
     @text_post = current_user.text_posts.find(params[:id])
   end
 
+  def update
+    @text_post = current_user.text_posts.find(params[:id])
+    if @text_post.update(text_post_params)
+      redirect_to post_path(@text_post), notice: "Post updated!"
+    else
+      render :edit, alert: "Error updating post."
+    end
+  end
+
   private
 
   def text_post_params
