@@ -7,7 +7,7 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(comments: [:user]).find(params[:id])
     @can_moderate = (current_user == @post.user)
   end
 end
