@@ -12,9 +12,13 @@ class TextPostsController < ApplicationController
     end
   end
 
+  def edit
+    @text_post = current_user.text_posts.find(params[:id])
+  end
+
   private
 
   def text_post_params
-    params.require(:text_post).permit(:title, :body)    
+    params.require(:text_post).permit(:title, :body)
   end
 end
